@@ -19,7 +19,7 @@ def home(request):
     return HttpResponse('Hello World')
 
 @api_view(['GET', 'POST'])
-def api_categorias(request):
+def api_mascotas(request):
     if request.method == 'GET':
         categorias = Mascota.objects.all().order_by('id')
         serializer = MascotaSerializer(categorias, many=True)
@@ -34,7 +34,7 @@ def api_categorias(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def api_categorias_detail(request, pk):
+def api_mascota_detail(request, pk):
     mascota = get_object_or_404(Mascota, pk=pk)
 
     if request.method == 'GET':
@@ -54,7 +54,7 @@ def api_categorias_detail(request, pk):
 
 
 @api_view(['GET','PUT','PATCH','DELETE'])
-def detalle_categorias(request, id):
+def detalle_mascotas(request, id):
     try:
         mascota = Mascota.objects.get(pk=id)
     except Mascota.DoesNotExist:
